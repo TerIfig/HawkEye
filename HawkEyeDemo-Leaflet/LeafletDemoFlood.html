@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+	integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+	crossorigin="">
+	
+
+   </script>
+</head>
+<body>
+<div id="mapid" style="width:100%;height:800px;"></div>
+<br/>
+<script>
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+}
+var srcLat = getUrlParam('L','Empty');
+var srcLong = getUrlParam('M','Empty');
+var destLat = getUrlParam('N','Empty');
+var destLat = getUrlParam('O','Empty');
+
+
+	// var mymap = L.map('mapid').setView([17.4180, 78.34], 14);
+	var mymap = L.map('mapid').setView([srcLat, srcLong], 14);
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1Ijoic3Vqb3lzZW4tY2ciLCJhIjoiY2p5anNkYzB5MDZpbjNlb3J3bnMweXR0NSJ9.fZsSzNzYCjlT94_9hThEww'
+}).addTo(mymap);
+https://api.mapbox.com/directions/v5/mapbox/driving/13.43,52.51;13.42,52.5;13.41,52.5?radiuses=40;;100&geometries=polyline6&access_token=pk.eyJ1Ijoic3Vqb3lzZW4tY2ciLCJhIjoiY2p5anNkYzB5MDZpbjNlb3J3bnMweXR0NSJ9.fZsSzNzYCjlT94_9hThEww
+
+var circle = L.circle([17.419310, 78.337980], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 300
+}).addTo(mymap);
+var circle = L.circle([17.403977, 78.329834], {
+    color: 'blue',
+    fillColor: 'blue',
+    fillOpacity: 0.5,
+    radius: 300
+}).addTo(mymap);
+var circle = L.circle([17.424812, 78.339785], {
+    color: 'green',
+    fillColor: 'green',
+    fillOpacity: 0.5,
+    radius: 200
+}).addTo(mymap);
+var circle = L.circle([17.429190, 78.342705], {
+    color: 'blue',
+    fillColor: 'blue',
+    fillOpacity: 0.5,
+    radius: 300
+}).addTo(mymap); 
+initmap();
+</script>
+</body>
+</html>
